@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your toolkit is ready</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=IBM+Plex+Mono:wght@400;600&family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#F7F9FB;--ink:#101828;--muted:#5B6B7F;--line:#E3E9F0;--amber:#F59E0B;--amber-ink:#7A4A00;--green:#15803D}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Public Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;display:flex;min-height:100vh;align-items:center;justify-content:center;padding:24px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;max-width:560px;width:100%;padding:48px 40px;text-align:center;box-shadow:0 12px 40px rgba(16,24,40,.08)}
+  .check{font-family:'IBM Plex Mono',monospace;color:var(--green);font-size:15px;margin-bottom:16px}
+  h1{font-family:'Space Grotesk',sans-serif;font-size:30px;margin-bottom:10px}
+  p{color:var(--muted);margin-bottom:28px}
+  .btn{display:inline-block;background:var(--amber);color:var(--amber-ink);font-weight:600;text-decoration:none;padding:14px 28px;border-radius:8px;font-size:16px}
+  .btn:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+  small{display:block;margin-top:22px;color:var(--muted);font-size:13px}
+  ol{text-align:left;color:var(--muted);font-size:15px;margin:0 0 28px;padding-left:20px}
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="check">✓ payment received</div>
+    <h1>Your toolkit is ready.</h1>
+    <p>Thanks for the purchase — download below, then start with the README inside.</p>
+    <a class="btn" href="ship-ios-without-a-mac.zip" download>Download the toolkit (.zip)</a>
+    <ol style="margin-top:28px">
+      <li>Unzip it anywhere</li>
+      <li>Read <strong>README.md</strong> — it routes you through the rest</li>
+      <li>Your app on TestFlight is realistically days away</li>
+    </ol>
+    <small>Problem with the download or a question about the pipeline? Reply to your Stripe receipt email and it comes straight to me. Free updates whenever Apple changes the rules.</small>
+  </div>
+</body>
+</html>
