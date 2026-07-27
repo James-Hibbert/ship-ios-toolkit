@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ship iOS Apps From Windows — No Mac Required | The Complete Toolkit</title>
+<meta name="description" content="Build, sign and publish Flutter iOS apps to the App Store from a Windows PC. No Mac, no Xcode. Cloud builds, code signing, TestFlight and App Review — the complete pipeline.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;600&family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F7F9FB; --ink:#101828; --muted:#5B6B7F; --line:#E3E9F0;
+    --term:#0D1117; --term-text:#C9D5E1; --green:#4ADE80; --blue:#58A6FF;
+    --amber:#F59E0B; --amber-ink:#7A4A00;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Public Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px}
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;line-height:1.15}
+  .mono{font-family:'IBM Plex Mono',monospace}
+
+  header{padding:20px 0;border-bottom:1px solid var(--line)}
+  header .wrap{display:flex;justify-content:space-between;align-items:center}
+  .logo{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:15px}
+  .logo span{color:var(--amber)}
+  header a.btn{font-size:14px;padding:8px 16px}
+
+  .hero{padding:72px 0 56px;text-align:left}
+  .kicker{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:16px}
+  h1{font-size:clamp(34px,5.5vw,56px);font-weight:700;max-width:16ch}
+  h1 em{font-style:normal;color:var(--amber);}
+  .hero p.sub{margin:20px 0 0;font-size:19px;color:var(--muted);max-width:52ch}
+
+  .terminal{margin:40px 0 0;background:var(--term);border-radius:10px;box-shadow:0 12px 40px rgba(16,24,40,.18);overflow:hidden}
+  .term-bar{display:flex;gap:7px;padding:12px 14px;border-bottom:1px solid #1B2330}
+  .term-bar i{width:11px;height:11px;border-radius:50%;background:#2A3444;display:block}
+  .term-body{padding:18px 20px 22px;font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--term-text);min-height:196px;white-space:pre-wrap}
+  .term-body .ok{color:var(--green)} .term-body .cmd{color:var(--blue)}
+  .caret{display:inline-block;width:8px;height:16px;background:var(--term-text);vertical-align:-2px;animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  @media (prefers-reduced-motion: reduce){.caret{animation:none}}
+
+  .cta-row{display:flex;gap:14px;align-items:center;margin-top:32px;flex-wrap:wrap}
+  .btn{display:inline-block;background:var(--amber);color:var(--amber-ink);font-weight:600;text-decoration:none;padding:14px 28px;border-radius:8px;font-size:16px;transition:transform .12s ease}
+  .btn:hover{transform:translateY(-1px)}
+  .btn:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+  .price-note{font-size:14px;color:var(--muted)}
+
+  section{padding:64px 0;border-top:1px solid var(--line)}
+  h2{font-size:clamp(24px,3.5vw,34px);margin-bottom:12px}
+  .lede{color:var(--muted);max-width:60ch;margin-bottom:36px}
+
+  .steps{list-style:none;counter-reset:step}
+  .steps li{counter-increment:step;display:grid;grid-template-columns:56px 1fr;gap:16px;padding:20px 0;border-bottom:1px dashed var(--line)}
+  .steps li::before{content:"0" counter(step);font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--amber);font-size:15px;padding-top:2px}
+  .steps h3{font-size:17px;margin-bottom:4px}
+  .steps p{color:var(--muted);font-size:15px;max-width:64ch}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:640px){.grid{grid-template-columns:1fr}}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:24px}
+  .card .tag{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--amber-ink);background:#FDF0DA;padding:3px 8px;border-radius:4px;display:inline-block;margin-bottom:12px}
+  .card h3{font-size:17px;margin-bottom:6px}
+  .card p{font-size:15px;color:var(--muted)}
+
+  .buy{background:var(--ink);color:#EDF1F6;border-radius:14px;padding:48px 40px;text-align:center}
+  .buy h2{color:#fff}
+  .buy p{color:#A9B6C6;max-width:48ch;margin:8px auto 28px}
+  .buy .price{font-family:'Space Grotesk',sans-serif;font-size:44px;font-weight:700;color:var(--amber);display:block;margin-bottom:4px}
+  .buy small{display:block;margin-top:14px;color:#7E8CA0;font-size:13px}
+
+  footer{padding:40px 0;color:var(--muted);font-size:14px}
+  footer a{color:var(--muted)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="logo">ship-ios<span>.no-mac</span></div>
+    <a class="btn" href="#buy">Get the toolkit</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="hero">
+      <p class="kicker">For Flutter developers on Windows &amp; Linux</p>
+      <h1>Ship iOS apps <em>without a Mac.</em></h1>
+      <p class="sub">Build, sign and publish to the App Store from the machine you already own. Cloud Mac builds, Xcode-free code signing, TestFlight, and a playbook for App Review — the complete pipeline, written by a developer with live apps shipped exactly this way.</p>
+
+      <div class="terminal" aria-label="Example build log">
+        <div class="term-bar"><i></i><i></i><i></i></div>
+        <div class="term-body" id="term"></div>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn" href="#buy">Get the toolkit — £19</a>
+        <span class="price-note">Instant download · Free updates when Apple moves the goalposts</span>
+      </div>
+    </div>
+  </div>
+
+  <section id="pipeline">
+    <div class="wrap">
+      <h2>The pipeline, honestly explained</h2>
+      <p class="lede">Apple's tools only run on macOS — but they don't have to run on <strong>your</strong> machine. Here's the whole approach, free. The toolkit gives you every config file, gotcha and fix to execute it in an afternoon instead of three months of forum archaeology.</p>
+      <ol class="steps">
+        <li><div><h3>Apple Developer account + App Store Connect API key</h3><p>One key replaces every "log into Xcode" step. Your cloud builder authenticates as you.</p></div></li>
+        <li><div><h3>A cloud Mac builds your app</h3><p>A CI service (Codemagic) rents you a Mac for the minutes each build takes. Free tier covers ~20 builds a month.</p></div></li>
+        <li><div><h3>Code signing with zero Xcode</h3><p>Certificates and provisioning profiles generated automatically from your API key. No OpenSSL rituals on Windows.</p></div></li>
+        <li><div><h3>Every Xcode GUI task becomes a text file</h3><p>Bundle IDs, deployment targets, permissions, icons — all set in pbxproj, Podfile, Info.plist and pubspec.yaml from your editor.</p></div></li>
+        <li><div><h3>Push to Git → signed .ipa lands on TestFlight</h3><p>Test on one real iPhone via TestFlight. You never touch the build machine.</p></div></li>
+        <li><div><h3>Survive App Review</h3><p>Most first submissions get rejected for the same five reasons. Clear them before you submit, not after.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="inside">
+    <div class="wrap">
+      <h2>What's in the toolkit</h2>
+      <p class="lede">Four files. Everything above, executable.</p>
+      <div class="grid">
+        <div class="card"><span class="tag">GUIDE</span><h3>Windows-to-App-Store Guide</h3><p>The full pipeline in order: account setup, signing, project config, builds, TestFlight, submission. Every step doable from Windows.</p></div>
+        <div class="card"><span class="tag">PLAYBOOK</span><h3>App Store Rejection Playbook</h3><p>The rejections you're statistically most likely to hit — demo accounts, subscription labelling, account deletion, spam flags — with the exact fix for each.</p></div>
+        <div class="card"><span class="tag">CONFIG</span><h3>Working codemagic.yaml</h3><p>Copy into your repo, replace five placeholders, push. Builds and uploads to TestFlight automatically.</p></div>
+        <div class="card"><span class="tag">CHECKLIST</span><h3>Submission Checklist</h3><p>Every field, screenshot size and compliance step in order. Run it top to bottom before every submission.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="buy">
+    <div class="wrap">
+      <div class="buy">
+        <h2>Stop waiting until you can afford a Mac.</h2>
+        <p>Your app could be on TestFlight this week. The toolkit costs less than 2% of the MacBook you were told you needed.</p>
+        <span class="price">£19</span>
+        <a class="btn" href="STRIPE_PAYMENT_LINK_HERE">Buy the toolkit</a>
+        <small>Secure checkout via Stripe · Instant download · Questions? hello@yourdomain.dev</small>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    © 2026 · Built by an indie developer shipping iOS apps from a Windows laptop · <a href="#pipeline">The pipeline</a>
+  </div>
+</footer>
+
+<script>
+  const lines = [
+    {t:"$ git push origin main", c:"cmd"},
+    {t:"→ Codemagic: build #16 started on mac_mini_m2", c:""},
+    {t:"✓ Certificates & provisioning applied (no Xcode)", c:"ok"},
+    {t:"✓ flutter build ipa --release … done in 14m 02s", c:"ok"},
+    {t:"✓ Runner.ipa uploaded to TestFlight", c:"ok"},
+    {t:"✓ No Mac required.", c:"ok"}
+  ];
+  const term = document.getElementById('term');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) {
+    term.innerHTML = lines.map(l=>`<span class="${l.c}">${l.t}</span>`).join("\n");
+  } else {
+    let li=0, ch=0, out="";
+    const caret = '<span class="caret"></span>';
+    (function type(){
+      if(li>=lines.length){ term.innerHTML = out + caret; return; }
+      const line = lines[li];
+      ch++;
+      const partial = `<span class="${line.c}">${line.t.slice(0,ch)}</span>`;
+      term.innerHTML = out + partial + caret;
+      if(ch===line.t.length){ out += partial + "\n"; li++; ch=0; setTimeout(type, 340); }
+      else setTimeout(type, 18);
+    })();
+  }
+</script>
+</body>
+</html>
